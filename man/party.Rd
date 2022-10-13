@@ -4,12 +4,14 @@
 \alias{party}
 \title{Print a Party Parrot to the Viewer}
 \usage{
-party(parrot, ...)
+party(parrot, ..., height = 30)
 }
 \arguments{
 \item{parrot}{name of parrot gif}
 
 \item{...}{additional arguments to pass to \code{htmltools::div()}}
+
+\item{height}{height of the parrots. Default is 30. Larger may work well for HD parrots.}
 }
 \value{
 HTML version of the parrot

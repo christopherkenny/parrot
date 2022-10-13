@@ -48,3 +48,9 @@ parrot_download()
 # party
 party('parrot')
 ```
+
+For use in markdown directly, we can use inline R:
+
+`r party_md('vibepartycat')`
+
+
