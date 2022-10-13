@@ -7,7 +7,7 @@
 parrot_download()
 }
 \value{
-character vector of paths to downloaded files
+character vector of paths to downloaded files, invisibly
 }
 \description{
 Download Party Parrots for Local Use

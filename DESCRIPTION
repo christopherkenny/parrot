@@ -19,5 +19,6 @@ Imports:
     fs,
     htmltools,
     rappdirs
-URL: https://github.com/christopherkenny/parrot
+URL: https://github.com/christopherkenny/parrot,
+    http://christophertkenny.com/parrot/
 BugReports: https://github.com/christopherkenny/parrot/issues

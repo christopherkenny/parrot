@@ -1,6 +1,6 @@
 #' Download Party Parrots for Local Use
 #'
-#' @return character vector of paths to downloaded files
+#' @return character vector of paths to downloaded files, invisibly
 #' @export
 #'
 #' @examples
@@ -29,7 +29,7 @@ parrot_download <- function() {
 
   fs::dir_delete(fs::path(dir, c('flags', 'guests', 'parrots')))
 
-  fs::dir_ls(path = fs::path(dir), recurse = TRUE, glob = '*.gif')
+  invisible(fs::dir_ls(path = fs::path(dir), recurse = TRUE, glob = '*.gif'))
 }
 
 #' Parrot Download Directory Path

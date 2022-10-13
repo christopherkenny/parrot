@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# parrot
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Arguably, the biggest drawback in R is the inability to use party parrots.
+`parrot` tries to close that gap by providing a way to insert party parrots into the RStudio viewer and in documents.
+`parrot` provides functions to download gifs from <https://cultofthepartyparrot.com/> and use them.
+
+## Installation
+
+You can install the development version of parrot from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("christopherkenny/parrot")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+# load the library
+library(parrot)
+
+# set the option to use the cache
+options(parrot.use_cache = TRUE)
+
+# download the parrots
+parrot_download()
+
+# party
+party('parrot')
+```
