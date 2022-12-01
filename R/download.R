@@ -7,20 +7,45 @@
 #' parrot_download()
 parrot_download <- function() {
   dir <- parrot_download_dir()
+
+  main_page <- fs::file_temp(ext = 'html')
+  curl::curl_download('https://cultofthepartyparrot.com/', main_page)
+  lines <- readLines(main_page)
+  patt <- 'parrots\\-.+\\.zip'
+  line <- lines[grep(patt, x = lines)[1]]
+  par_numb <- regmatches(line, gregexpr(patt, line))[[1]]
+
+
   def <- fs::file_temp(tmp_dir = dir, ext = 'zip')
-  curl::curl_download('https://cultofthepartyparrot.com/parrots-8ed4aab076.zip', destfile = def)
+  curl::curl_download(paste0('https://cultofthepartyparrot.com/', par_numb), destfile = def)
   utils::unzip(def, exdir = dir)
   fs::file_delete(def)
 
+  lines <- readLines(main_page)
+  patt <- 'guests\\-.+\\.zip'
+  line <- lines[grep(patt, x = lines)[1]]
+  gue_numb <- regmatches(line, gregexpr(patt, line))[[1]]
+
   guests <- fs::file_temp(tmp_dir = dir, ext = 'zip')
-  curl::curl_download('https://cultofthepartyparrot.com/guests-ba4e03bec0.zip', destfile = guests)
+  curl::curl_download(paste0('https://cultofthepartyparrot.com/', gue_numb), destfile = guests)
   utils::unzip(guests, exdir = dir)
   fs::file_delete(guests)
 
+  fs::file_delete(main_page)
+
+  flag_page <- fs::file_temp(ext = 'html')
+  curl::curl_download('https://cultofthepartyparrot.com/flags.html', flag_page)
+  lines <- readLines(flag_page)
+  patt <- 'flags\\-.+\\.zip'
+  line <- lines[grep(patt, x = lines)[1]]
+  fla_numb <- regmatches(line, gregexpr(patt, line))[[1]]
+
   flags <- fs::file_temp(tmp_dir = dir, ext = 'zip')
-  curl::curl_download('https://cultofthepartyparrot.com/flags-1f36c9a1bd.zip', destfile = flags)
+  curl::curl_download(paste0('https://cultofthepartyparrot.com/', fla_numb), destfile = flags)
   utils::unzip(flags, exdir = dir)
   fs::file_delete(flags)
+
+  fs::file_delete(flag_page)
 
   fs::file_move(
     fs::dir_ls(path = dir, recurse = TRUE, glob = '*.gif'),
